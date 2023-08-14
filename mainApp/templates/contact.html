@@ -1,0 +1,159 @@
+{% extends 'index.html' %}
+{% load static %}
+
+{% block title %}
+<title>Art Move | Contact Page</title>
+{% endblock %}
+
+{% block body %}
+<img class="img-fluid" src="{% static 'img/banner/banner-bg1.jpg' %}" style="height: 50px; width: 100%;" alt="">
+<header id="header-part">
+    <div class="navigation" style="box-shadow: 10px 10px 5px 5px rgba(132, 145, 143, 0.3);">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-10 col-md-10 col-sm-9 col-8">
+                    <nav class="navbar navbar-expand-lg">
+                        <a class="navbar-brand logo_h fs-4" style="font-weight: 500;" href="/"><img
+                                src="{% static 'img/fav.png' %}" alt=""><span class="ml-4" style="color:black;">ART
+                                MOVE</span></a>
+                        <button class="navbar-toggler" type="button" data-toggle="collapse"
+                            data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                            aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
+                            <ul class="nav navbar-nav menu_nav ml-auto">
+                                <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+                                <li class="nav-item"><a class="nav-link" href="/shop/All/All/All">Shop</a></li>
+                                <li class="nav-item"><a class="nav-link" href="/blog/">Blog</a></li>
+                                <li class="nav-item"><a class="nav-link" href="/history/">Product History</a></li>
+                                <li class="nav-item"><a class="nav-link active mr-5" href="/contact/">Contact</a></li>
+                            </ul>
+                            <ul class="nav navbar-nav navbar-right">
+                                <li class="nav-item"><a href="/cart/" class="cart"><span class="ti-bag"></span></a></li>
+                            </ul>
+                        </div>
+                </div>
+                <div class="col-1">
+                    <div class="right-icon text-right">
+                        <ul>
+                            <li><a href="#" id="search"><i class="fa fa-search"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-1">
+                    <div class="pt-15">
+                        <ul class="nav navbar-nav menu_nav ml-auto">
+                            {% if request.user.is_authenticated %}
+                            <li class="nav-item mt-0">
+                                <a href="#" class="nav-link dropdown-toggle blue"
+                                    style="font-weight: 600; font-size: larger;" data-toggle="dropdown" role="button"
+                                    aria-haspopup="true" aria-expanded="false">{{request.user}}</a>
+                                <ul class="sub-menu dropdown-menu background" style="width: max-content;">
+                                    <li><a href="/profile/" class="text-left mt-1 nav-item text-light">PROFILE</a></li>
+                                    <hr style="color: rgb(254, 166, 4); font-weight: bolder; height: 3px;">
+                                    <li><a href="/logout/" class="text-left mb-2 nav-item text-light">LOGOUT</a></li>
+                                </ul>
+                            </li>
+                            {% else %}
+                            <li><a href="/login/" class="btn background text-light" id="search"
+                                    style="font-weight: 600;">LOGIN</a>
+                            </li>
+                            {% endif %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            </nav>
+        </div>
+    </div>
+</header>
+<section class="banner-area organic-breadcrumb">
+    <div class="container pb-5">
+        <div class="row">
+            <div class="col-lg-9">
+                <div class="contact_info">
+                    <div class="info_item">
+                        <i class="lnr lnr-home"></i>
+                        <h6>California, United States</h6>
+                        <p>Santa monica bullevard</p>
+                    </div>
+                    <div class="info_item">
+                        <i class="lnr lnr-phone-handset"></i>
+                        <h6><a href="#">00 (440) 9865 562</a></h6>
+                        <p>Mon to Fri 9am to 6 pm</p>
+                    </div>
+                    <div class="info_item">
+                        <i class="lnr lnr-envelope"></i>
+                        <h6><a href="#">support@colorlib.com</a></h6>
+                        <p>Send us your query anytime!</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-3 fs-4">
+                <h1 class="text-light">Contact</h1>
+                <nav class="d-flex align-items-center fs-5">
+                    <a class="text-light" href="/">Home<span
+                            class="lnr lnr-arrow-right text-light ml-3 mr-3"></span></a>
+                    <a class="text-light" href="">Contact</a>
+                </nav>
+            </div>
+        </div>
+</section>
+
+<!-- End Banner Area -->
+
+<!--================Login Box Area =================-->
+<section class="login_box_area section_gap">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6" style="height: 650px;">
+                <div class="gmap_canvas"><iframe width="100%" height="650" id="gmap_canvas"
+                        src="https://maps.google.com/maps?q=alampur%20adva&t=&z=13&ie=UTF8&iwloc=&output=embed"
+                        frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe><a
+                        href="https://123movies-to.org"></a><br>
+                    <a href="https://www.embedgooglemap.net"></a>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                {% for i in messages %}
+                <div class="alert alert-danger" role="alert">
+                    {{i}}
+                </div>
+                {% endfor %}
+                <div class="login_form_inner">
+                    <h3>Contact Us</h3>
+                    <form class="row login_form" action="" method="post" id="contactForm" novalidate="novalidate">
+                        {% csrf_token %}
+                        <div class="col-md-12 form-group">
+                            <input type="text" class="form-control" name="name" placeholder="Enter your Name"
+                                onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter your Name'">
+                        </div>
+                        <div class="col-md-12 form-group">
+                            <input type="email" class="form-control" name="email" placeholder="Enter your Email"
+                                onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter your Email'">
+                        </div>
+                        <div class="col-md-12 form-group">
+                            <input type="text" class="form-control" name="phone" placeholder="Enter your Phone Number"
+                                onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter your Phone Number'">
+                        </div>
+                        <div class="col-md-12 form-group">
+                            <input type="text" class="form-control" name="subject" placeholder="Enter your subject"
+                                onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter your subject'">
+                        </div>
+                        <div class="col-md-12 form-group">
+                            <textarea name="message" class="form-control" placeholder="Message" rows="5"
+                                onfocus="this.placeholder = ''" onblur="this.placeholder = 'Message'"></textarea>
+                        </div>
+                        <div class="col-md-12 form-group">
+                            <button type="Login" class="primary-btn">Submit</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

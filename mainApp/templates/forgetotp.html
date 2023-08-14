@@ -1,0 +1,118 @@
+{% extends 'index.html' %}
+{% load static %}
+
+{% block title %}
+<title>Art Move | Forget Password</title>
+{% endblock %}
+
+{% block body %}
+<img class="img-fluid" src="{% static 'img/banner/banner-bg1.jpg' %}" style="height: 50px; width: 100%;" alt="">
+<header id="header-part">
+  <div class="navigation" style="box-shadow: 10px 10px 5px 5px rgba(132, 145, 143, 0.3);">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-10 col-md-10 col-sm-9 col-8">
+          <nav class="navbar navbar-expand-lg">
+            <a class="navbar-brand logo_h fs-4" style="font-weight: 500;" href="/"><img src="{% static 'img/fav.png' %}"
+                alt=""><span class="ml-4" style="color:black;">ART MOVE</span></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+              aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
+              <ul class="nav navbar-nav menu_nav ml-auto">
+                <li class="nav-item"><a class="nav-link active" href="/">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="/shop/All/All/All">Shop</a></li>
+                <li class="nav-item"><a class="nav-link" href="/blog/">Blog</a></li>
+                <li class="nav-item"><a class="nav-link" href="/history/">Product History</a></li>
+                <li class="nav-item"><a class="nav-link mr-5" href="/contact/">Contact</a></li>
+              </ul>
+              <ul class="nav navbar-nav navbar-right">
+                <li class="nav-item"><a href="/cart/" class="cart"><span class="ti-bag"></span></a></li>
+              </ul>
+            </div>
+        </div>
+        <div class="col-1">
+          <div class="right-icon text-right">
+            <ul>
+              <li><a href="#" id="search"><i class="fa fa-search"></i></a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-1">
+          <div class="pt-15">
+            <ul class="nav navbar-nav menu_nav ml-auto">
+              {% if request.user.is_authenticated %}
+              <li class="nav-item mt-0">
+                <a href="#" class="nav-link dropdown-toggle blue" style="font-weight: 600; font-size: larger;"
+                  data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{request.user}}</a>
+                <ul class="sub-menu dropdown-menu background" style="width: max-content;">
+                  <li><a href="/profile/" class="text-left mt-1 nav-item text-light">PROFILE</a></li>
+                  <hr style="color: rgb(254, 166, 4); font-weight: bolder; height: 3px;">
+                  <li><a href="/logout/" class="text-left mb-2 nav-item text-light">LOGOUT</a></li>
+                </ul>
+              </li>
+              {% else %}
+              {% endif %}
+            </ul>
+          </div>
+        </div>
+      </div>
+      </nav>
+    </div>
+  </div>
+</header>
+
+
+<section class="banner-area organic-breadcrumb">
+  <div class="container">
+    <div class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
+      <div class="col-first">
+        <h1>Forget Password</h1>
+        <nav class="d-flex align-items-center">
+          <a href="/">Home<span class="lnr lnr-arrow-right"></span></a>
+          <a href="">Forget Password</a>
+        </nav>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="login_box_area section_gap">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-6">
+        <div class="login_box_img">
+          <img class="img-fluid" src="{% static 'img/login.jpg' %}" alt="">
+          <div class="hover">
+            <h4>Remember your Password?</h4>
+            <p>There are advances being made in science and technology everyday, and a good example of this is the</p>
+            <a class="primary-btn" href="/login/">Login</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        {% for i in messages %}
+        <div class="alert alert-danger" role="alert">
+          {{i}}
+        </div>
+        {% endfor %}
+        <div class="login_form_inner">
+          <h3>Forget Password</h3>
+          <form class="row login_form" action="" method="post" id="contactForm" novalidate="novalidate">
+            {% csrf_token %}
+            <div class="col-md-12 form-group">
+              <input type="text" class="form-control" id="name" name="otp" placeholder="Enter OTP Send on your Email"
+                onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter OTP Send on your Email'">
+            </div>
+            <div class="col-md-12 form-group">
+              <button type="submit" class="primary-btn">Submit</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

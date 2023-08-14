@@ -1,0 +1,175 @@
+{% extends 'index.html' %}
+{% load static %}
+
+{% block title %}
+<title>Art Move | Shop Page</title>
+{% endblock %}
+
+{% block body %}
+<img class="img-fluid" src="{% static 'img/banner/banner-bg1.jpg' %}" style="height: 50px; width: 100%;" alt="">
+<header id="header-part">
+    <div class="navigation" style="box-shadow: 10px 10px 5px 5px rgba(132, 145, 143, 0.3);">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-10 col-md-10 col-sm-9 col-8">
+                    <nav class="navbar navbar-expand-lg">
+                        <a class="navbar-brand logo_h fs-4" style="font-weight: 500;" href="/"><img
+                                src="{% static 'img/fav.png' %}" alt=""><span class="ml-4" style="color:black;">ART
+                                MOVE</span></a>
+                        <button class="navbar-toggler" type="button" data-toggle="collapse"
+                            data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                            aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
+                            <ul class="nav navbar-nav menu_nav ml-auto">
+                                <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+                                <li class="nav-item"><a class="nav-link active" href="/shop/All/All/All">Shop</a></li>
+                                <li class="nav-item"><a class="nav-link" href="/blog/">Blog</a></li>
+                                <li class="nav-item"><a class="nav-link" href="/history/">Product History</a></li>
+                                <li class="nav-item"><a class="nav-link mr-5" href="/contact/">Contact</a></li>
+                            </ul>
+                            <ul class="nav navbar-nav navbar-right">
+                                <li class="nav-item"><a href="/cart/" class="cart"><span class="ti-bag"></span></a></li>
+                            </ul>
+                        </div>
+                </div>
+                <div class="col-1">
+                    <div class="right-icon text-right">
+                        <ul>
+                            <li><a href="#" id="search"><i class="fa fa-search"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-1">
+                    <div class="pt-15">
+                        <ul class="nav navbar-nav menu_nav ml-auto">
+                            {% if request.user.is_authenticated %}
+                            <li class="nav-item mt-0">
+                                <a href="#" class="nav-link dropdown-toggle blue"
+                                    style="font-weight: 600; font-size: larger;" data-toggle="dropdown" role="button"
+                                    aria-haspopup="true" aria-expanded="false">{{request.user}}</a>
+                                <ul class="sub-menu dropdown-menu background" style="width: max-content;">
+                                    <li><a href="/profile/" class="text-left mt-1 nav-item text-light">PROFILE</a></li>
+                                    <hr style="color: rgb(254, 166, 4); font-weight: bolder; height: 3px;">
+                                    <li><a href="/logout/" class="text-left mb-2 nav-item text-light">LOGOUT</a></li>
+                                </ul>
+                            </li>
+                            {% else %}
+                            <li><a href="/login/" class="btn background text-light" id="search"
+                                    style="font-weight: 600;">LOGIN</a>
+                            </li>
+                            {% endif %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            </nav>
+        </div>
+    </div>
+</header>
+
+<section class="banner-area organic-breadcrumb">
+    <div class="container">
+        <div class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
+            <div class="col-first">
+                <h1>Shop Category page</h1>
+                <nav class="d-flex align-items-center">
+                    <a href="/">Home<span class="lnr lnr-arrow-right"></span></a>
+                    <a href="/shop/">Shop<span class="lnr lnr-arrow-right"></span></a>
+                    <a href="/shop/">Fashon Category</a>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End Banner Area -->
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-xl-3 col-lg-4 col-md-5">
+            <div class="sidebar-filter mt-0">
+                <div class="top-filter-head">Browse Categories</div>
+                <div class="common-filter">
+                    <div class="head">MainCategory</div>
+                    <div class="list-group">
+                        <a href="/shop/All/{{sc}}/{{br}}/" class=" ml-5 mb-2 list-group-item-action">All</a>
+                        {% for i in Maincategory %}
+                        <a href="/shop/{{i.name}}/{{sc}}/{{br}}/"
+                            class="ml-5 mt-2 list-group-item-action">{{i.name}}</a>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="common-filter mt-0">
+                    <div class="head">SubCategory</div>
+                    <div class="list-group">
+                        <a href="/shop/{{mc}}/All/{{br}}/" class="ml-5 mb-2 list-group-item-action">All</a>
+                        {% for i in Subcategory %}
+                        <a href="/shop/{{mc}}/{{i.name}}/{{br}}/"
+                            class="ml-5 mt-2 list-group-item-action">{{i.name}}</a>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="common-filter mt-0">
+                    <div class="head">Brands</div>
+                    <div class="list-group">
+                        <a href="/shop/{{mc}}/{{sc}}/All/" class="ml-5 mb-2 list-group-item-action">All</a>
+                        {% for i in Brand %}
+                        <a href="/shop/{{mc}}/{{sc}}/{{i.name}}/"
+                            class="ml-5 mt-2 list-group-item-action">{{i.name}}</a>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-9 col-lg-8 col-md-7">
+            <!-- Start Filter Bar -->
+            <div class="filter-bar d-flex flex-wrap align-items-center p-0">
+                <h2 class="text-light text-center" style="margin-left: 200px; margin-top: 10px; padding-bottom: 3px;">
+                    Latest Products</h2>
+            </div>
+            <!-- End Filter Bar -->
+            <!-- Start Best Seller -->
+            <section class="lattest-product-area category-list">
+                <div class="row">
+                    <!-- single product -->
+                    {% for i in Product %}
+                    <div class="col-lg-4 col-md-6">
+                        <div class="single-product">
+                            {% if i.pic1 %}
+                            <a href="/singleproduct/{{i.id}}"><img class="img-fluid"
+                                    style="width: fit-content; height: 290px;" src="{{i.pic1.url}}" alt=""></a>
+                            {% else %}
+                            <a href="/singleproduct/{{i.id}}"><img class="img-fluid"
+                                    style="width: fit-content; height: 290px;" src="{% static 'images/noimagep.png' %}"
+                                    alt=""></a>
+                            {% endif %}
+                            <div class="product-details">
+                                <h6>{{i.name}}</h6>
+                                <div class="price">
+                                    <h6>&#8377;{{i.finalprice}}</h6>
+                                    <h6 class="l-through">&#8377;{{i.baseprice}}</h6>
+                                </div>
+                                <div class="prd-bottom">
+
+                                    <a href="/singleproduct/{{i.id}}" class="social-info">
+                                        <span class="ti-bag"></span>
+                                        <p class="hover-text">add to bag</p>
+                                    </a>
+                                    <a href="/addtowishlist/{{i.id}}" class="social-info">
+                                        <span class="lnr lnr-heart"></span>
+                                        <p class="hover-text">Wishlist</p>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </section>
+            <!-- End Best Seller -->
+        </div>
+    </div>
+</div>
+{% endblock %}

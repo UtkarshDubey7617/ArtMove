@@ -1,0 +1,147 @@
+{% extends 'index.html' %}
+{% load static %}
+
+{% block title %}
+<title>Art Move | Seller Profile Page</title>
+{% endblock %}
+
+{% block body %}
+<img class="img-fluid" src="{% static 'img/banner/banner-bg1.jpg' %}" style="height: 60px; width: 100%;" alt="">
+<header id="header-part">
+    <div class="navigation" style="box-shadow: 10px 10px 5px 5px rgba(132, 145, 143, 0.3);">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-10 col-md-10 col-sm-9 col-8">
+                    <nav class="navbar navbar-expand-lg">
+                        <a class="navbar-brand logo_h fs-4" style="font-weight: 500;" href="/"><img
+                                src="{% static 'img/fav.png' %}" alt=""><span class="ml-4" style="color:black;">ART
+                                MOVE</span></a>
+                        <button class="navbar-toggler" type="button" data-toggle="collapse"
+                            data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                            aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+
+                        <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
+                            <ul class="nav navbar-nav menu_nav ml-auto">
+                                <li class="nav-item"><a class="nav-link active" href="/">Home</a></li>
+                                <li class="nav-item"><a class="nav-link" href="/shop/All/All/All">Shop</a></li>
+                                <li class="nav-item"><a class="nav-link" href="/blog/">Blog</a></li>
+                                <li class="nav-item"><a class="nav-link" href="/history/">Product History</a></li>
+                                <li class="nav-item"><a class="nav-link mr-5" href="/contact/">Contact</a></li>
+                            </ul>
+                            <ul class="nav navbar-nav navbar-right">
+                                <li class="nav-item"><a href="/cart/" class="cart"><span class="ti-bag"></span></a></li>
+                            </ul>
+                        </div>
+                </div>
+                <div class="col-1">
+                    <div class="right-icon text-right">
+                        <ul>
+                            <li><a href="#" id="search"><i class="fa fa-search"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-1">
+                    <div class="pt-15">
+                        <ul class="nav navbar-nav menu_nav ml-auto">
+                            {% if request.user.is_authenticated %}
+                            <li class="nav-item mt-0">
+                                <a href="#" class="nav-link dropdown-toggle blue"
+                                    style="font-weight: 600; font-size: larger;" data-toggle="dropdown" role="button"
+                                    aria-haspopup="true" aria-expanded="false">{{request.user}}</a>
+                                <ul class="sub-menu dropdown-menu background" style="width: max-content;">
+                                    <li><a href="/profile/" class="text-left mt-1 nav-item text-light">PROFILE</a></li>
+                                    <hr style="color: rgb(254, 166, 4); font-weight: bolder; height: 3px;">
+                                    <li><a href="/logout/" class="text-left mb-2 nav-item text-light">LOGOUT</a></li>
+                                </ul>
+                            </li>
+                            {% else %}
+                            <li><a href="/login/" class="btn background text-light" id="search"
+                                    style="font-weight: 600;">LOGIN</a>
+                            </li>
+                            {% endif %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            </nav>
+        </div>
+    </div>
+</header>
+
+<section class="banner-area organic-breadcrumb">
+    <div class="container">
+        <div class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
+            <div class="col-first">
+                <h1>Seller Profile</h1>
+                <nav class="d-flex align-items-center">
+                    <a href="/">Home<span class="lnr lnr-arrow-right"></span></a>
+                    <a href="/profile/">Profile</a>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>
+<div class="container-fluid mb-5 mt-5">
+    <div class="row">
+        <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12 ml-5">
+            <h3 class="back text-light text-center p-2 mt-1">Seller Details</h3>
+            <table class="table table-light table-striped table-hover">
+                <tr>
+                    <th>Name :-</th>
+                    <td>{{User.name}}</td>
+                </tr>
+                <tr>
+                    <th>Username :-</th>
+                    <td>{{User.username}}</td>
+                </tr>
+                <tr>
+                    <th>Email :-</th>
+                    <td>{{User.email}}</td>
+                </tr>
+                <tr>
+                    <th>Phone :-</th>
+                    <td>{{User.phone}}</td>
+                </tr>
+                <tr>
+                    <th>House Number :-</th>
+                    <td>{{User.addressline1}}</td>
+                </tr>
+                <tr>
+                    <th>Street Number :-</th>
+                    <td>{{User.addressline2}}</td>
+                </tr>
+                <tr>
+                    <th>Locality :-</th>
+                    <td>{{User.addressline3}}</td>
+                </tr>
+                <tr>
+                    <th>Pin Code :-</th>
+                    <td>{{User.pin}}</td>
+                </tr>
+                <tr>
+                    <th>City :-</th>
+                    <td>{{User.city}}</td>
+                </tr>
+                <tr>
+                    <th>State :-</th>
+                    <td>{{User.state}}</td>
+                </tr>
+                <tr>
+                    <th colspan="2"><a href="/updateprofile/" class="btn back text-light w-100">Update Profile</a></th>
+                </tr>
+            </table>
+        </div>
+        <div class="col-xxl-5 col-xl-5 col-lg-5 col-md-5 col-sm-12 col-12 mt-1">
+            {% if User.pic %}
+            <img src="{{User.pic.url}}" style="height: 450px; width: 450px; border-radius: 50%;padding: 60px; margin-left: 100px;">
+            {% else %}
+            <img src="{% static 'images/noimage.jpg' %}" class="w-100">
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

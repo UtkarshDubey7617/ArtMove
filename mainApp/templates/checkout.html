@@ -1,0 +1,208 @@
+{% extends 'index.html' %}
+{% load static %}
+{% load cart %}
+
+{% block title %}
+<title>Art Move | Checkout Page</title>
+{% endblock %}
+
+{% block body %}
+<img class="img-fluid" src="{% static 'img/banner/banner-bg1.jpg' %}" style="height: 50px; width: 100%;" alt="">
+<header id="header-part">
+    <div class="navigation" style="box-shadow: 10px 10px 5px 5px rgba(132, 145, 143, 0.3);">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-10 col-md-10 col-sm-9 col-8">
+                    <nav class="navbar navbar-expand-lg">
+                        <a class="navbar-brand logo_h fs-4" style="font-weight: 500;" href="/"><img
+                                src="{% static 'img/fav.png' %}" alt=""><span class="ml-4" style="color:black;">ART
+                                MOVE</span></a>
+                        <button class="navbar-toggler" type="button" data-toggle="collapse"
+                            data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                            aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
+                            <ul class="nav navbar-nav menu_nav ml-auto">
+                                <li class="nav-item"><a class="nav-link active" href="/">Home</a></li>
+                                <li class="nav-item"><a class="nav-link" href="/shop/All/All/All">Shop</a></li>
+                                <li class="nav-item"><a class="nav-link" href="/blog/">Blog</a></li>
+                                <li class="nav-item"><a class="nav-link" href="/history/">Product History</a></li>
+                                <li class="nav-item"><a class="nav-link mr-5" href="/contact/">Contact</a></li>
+                            </ul>
+                            <ul class="nav navbar-nav navbar-right">
+                                <li class="nav-item"><a href="/cart/" class="cart"><span class="ti-bag"></span></a></li>
+                            </ul>
+                        </div>
+                </div>
+                <div class="col-1">
+                    <div class="right-icon text-right">
+                        <ul>
+                            <li><a href="#" id="search"><i class="fa fa-search"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-1">
+                    <div class="pt-15">
+                        <ul class="nav navbar-nav menu_nav ml-auto">
+                            {% if request.user.is_authenticated %}
+                            <li class="nav-item mt-0">
+                                <a href="#" class="nav-link dropdown-toggle blue"
+                                    style="font-weight: 600; font-size: larger;" data-toggle="dropdown" role="button"
+                                    aria-haspopup="true" aria-expanded="false">{{request.user}}</a>
+                                <ul class="sub-menu dropdown-menu background" style="width: max-content;">
+                                    <li><a href="/profile/" class="text-left mt-1 nav-item text-light">PROFILE</a></li>
+                                    <hr style="color: rgb(254, 166, 4); font-weight: bolder; height: 3px;">
+                                    <li><a href="/logout/" class="text-left mb-2 nav-item text-light">LOGOUT</a></li>
+                                </ul>
+                            </li>
+                            {% else %}
+                            <li><a href="/login/" class="btn background text-light" id="search"
+                                    style="font-weight: 600;">LOGIN</a>
+                            </li>
+                            {% endif %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            </nav>
+        </div>
+    </div>
+</header>
+
+<section class="banner-area organic-breadcrumb">
+    <div class="container">
+        <div class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
+            <div class="col-first">
+                <h1>Checkout</h1>
+                <nav class="d-flex align-items-center">
+                    <a href="/">Home<span class="lnr lnr-arrow-right"></span></a>
+                    <a href="">Checkout</a>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End Banner Area -->
+
+<!--================Checkout Area =================-->
+<section class="checkout_area section_gap">
+    <div class="container">
+        <div class="billing_details">
+            <div class="row">
+                <div class="col-lg-6">
+                    <h3>Billing Details</h3>
+                    <form class="row contact_form" action="#" method="post" novalidate="novalidate">
+                        <div class="col-md-12 form-group p_star">
+                            <input type="text" class="form-control" name="name" placeholder="Enter your Name" required
+                                value="{{User.name}}">
+
+                        </div>
+                        <div class="col-md-6 form-group p_star">
+                            <input type="email" class="form-control" name="email" placeholder="Enter your email"
+                                required value="{{User.email}}">
+
+                        </div>
+                        <div class="col-md-6 form-group">
+                            <input type="text" class="form-control" name="phone" placeholder="Enter your phone number"
+                                required value="{{User.phone}}">
+                        </div>
+                        <div class="col-md-6 form-group p_star">
+                            <input type="text" class="form-control" name="addressline1"
+                                placeholder="Enter your House Number" required value="{{User.addressline1}}">
+                        </div>
+                        <div class="col-md-6 form-group p_star">
+                            <input type="text" class="form-control" name="addressline2"
+                                placeholder="Enter your Street Number" required value="{{User.addressline2}}">
+
+                        </div>
+                        <div class="col-md-12 form-group p_star">
+                            <input type="text" class="form-control" name="addressline3"
+                                placeholder="Enter your Locality" required value="{{User.addressline3}}">
+
+                        </div>
+                        <div class="col-md-12 form-group p_star">
+                            <input type="text" class="form-control" name="pin" placeholder="Enter your Pin Code"
+                                required value="{{User.pin}}">
+
+                        </div>
+                        <div class="col-md-12 form-group p_star">
+                            <input type="text" class="form-control" name="city" placeholder="Enter your City" required
+                                value="{{User.city}}">
+                        </div>
+                        <div class="col-md-12 form-group">
+                            <input type="text" class="form-control" name="state" placeholder="Enter your State "
+                                required value="{{User.state}}">
+                        </div>
+                        <div class="col-lg-4 p-0">
+                            <a class="back text-light text-uppercase p-2 ml-3 mt-3 mb-5" style="font-weight: 500;"
+                                href="/updateprofile/">update Details</a>
+                        </div>
+                    </form>
+                </div>
+                <div class="col-lg-5">
+                    <div class="order_box">
+                        <h2>Your Order</h2>
+                        <ul class="list">
+                            <li><a href="#">Product <span>Total</span></a></li>
+                        </ul>
+                        {% for i in Cart %}
+                        <ul class="list">
+                            <div class="row">
+                                <div class="col-8">
+                                    {{request|cartname:i}}
+                                </div>
+                                <div class="col-2">
+                                    x {{request|cartqty:i}}
+                                </div>
+                                <div class="col-2">
+                                    &#8377;{{request|carttotal:i}}
+                                </div>
+                            </div>
+                        </ul>
+                        {% endfor %}
+                        <ul class="list list_2">
+                            <li><a href="#">Subtotal <span>&#8377;{{Total}}</span></a></li>
+                            <li><a href="#">Shipping <span>Flat rate: &#8377;{{Shipping}}</span></a></li>
+                            <li><a href="#">Total <span>&#8377;{{Final}}</span></a></li>
+                        </ul>
+                        <div class="payment_item active">
+                            <div class="radion_btn">
+                                <img src="{ % static 'img/product/card.jpg' %}" alt="">
+                                <p>Pay via Razorpay; you can pay with your credit card if you don’t have a Razorpay
+                                    account.</p>
+                            </div>
+                        </div>
+                        <form action="" method="post">
+                            {% csrf_token %}
+                            <div class="payment_item active">
+                                <div class="radion_btn mr-3">
+                                    <label for="f-option5" style="padding: 0px 25px 31px 5px;">Procced to
+                                        payments</label>
+                                    <select class="form-data w-100 p-2" name="mode">
+                                        <option value="COD">Cash On Delivery</option>
+                                        <option value="Net Banking">Net Banking/Card/UPI</option>
+                                    </select>
+                                </div>
+                                <div class="creat_account">
+                                    <label for="f-option4">I’ve read and accept the </label>
+                                    <a href="#">terms & conditions*</a>
+                                </div>
+                                <button class="primary-btn" type="submit" style="width: 100%; border: none;">place your
+                                    order</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+</section>
+<script>
+    function fun(num) {
+        if (confirm("Are you sure! You Want to Delete that Item"))
+            window.open(`/deletecart/${num}/`)
+    }
+</script>
+{% endblock %}
